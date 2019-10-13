@@ -7,6 +7,10 @@
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"
   },
+  "engines": {
+    "npm": "6.11.3",
+    "node": "12.11.1"
+  },
   "keywords": [],
   "author": "Ajaegbu Shedrack",
   "license": "ISC",

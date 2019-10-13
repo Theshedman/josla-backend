@@ -2,6 +2,7 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const Career = require('./models/career');
 const fileUpload = require('express-fileupload');
 const resumeRoute = require('./routes/resume');
 const careerRoute = require('./routes/career');
@@ -33,6 +34,19 @@ app.use(fileUpload({
 app.use(resumeRoute);
 app.use(careerRoute);
 app.use(enquiryRoute);
+
+app.get('/', async (req, res) => {
+    try {
+        const career = await Career.find({});
+        if (!career) {
+            return res.status(404).send({msg: 'Not found!'});
+        }
+
+        res.status(200).send(career);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
 
 // Start server
 app.listen(port, () => {
